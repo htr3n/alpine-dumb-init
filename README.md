@@ -4,25 +4,30 @@
 
 This image is based on the base [Alpine dockr image](https://hub.docker.com/r/library/alpine) plus Yelp's [`dumb-init`](https://github.com/Yelp/dumb-init) for better signal handling.
 
+## Build a new image
 
-## Usage
-
-Build a new image:
+Build with the default Alpine version 3.
 
 ```sh
-docker build --rm --tag=alpine-init .
+docker build --rm --tag=alpine-dumb-init .
+```
+
+Build with a specific Alpine version:
+
+```sh
+docker build --build-arg="ALPINE_VERSION=3.18" --rm --tag=alpine-dumb-init . 
 ```
 
 ## Start a new container from the newly created image
 
 ```sh
-docker run -it --rm alpine-init /bin/sh
+docker run -it --rm alpine-dumb-init /bin/sh
 ```
 
 ## Derive a new Docker image from the current one
 
 ```Dockerfile
-FROM alpine-init
+FROM alpine-dumb-init
 
 RUN ...
 
